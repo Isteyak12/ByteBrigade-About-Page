@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Main title section with ABOUT button -->
+  <div class="text-center">
+    <a href="#" class="button-link"><button id="about-button">ABOUT</button></a>
+  </div>
+
+  <!-- Background image container -->
+  <div class="background-container">
+    <img src="images/here.gif" alt="Background" class="background-gif" />
+  </div>
+
+  <!-- Navigation buttons for personal websites -->
+  <div class="button-container">
+    <a href="https://sdbncode.github.io/SdbnCode/" class="button-link"><button>STEVE</button></a>
+    <a href="https://syndicategit.github.io/portfolio-website-2023/" class="button-link"><button>RAYMOND</button></a>
+    <a href="https://parin-parikh.github.io/personal_website/" class="button-link"><button>PARIN</button></a>
+    <a href="https://isteyak-digital-resume-app.streamlit.app/" class="button-link"><button>ISTEYAK</button></a>
+    <button id="change-background">CHANGE THEME</button>
+  </div>
+
+  <!-- Bottom section with toggle switch and back button -->
+  <div class="bottom-center">
+    <!-- Toggle switch for dark mode -->
+    <label class="switch">
+      <input type="checkbox" id="toggle-dark-mode" />
+      <span class="slider round"></span>
+    </label>
+    
+    <!-- Back button to navigate to the previous page -->
+    <button id="back-button" onclick="goBack()">⬅️ GO BACK</button>
+  </div>
+
+  <!-- JavaScript for interactive elements -->
+  <script>
+    // Function to navigate to the previous page
+    function goBack() {
+      window.history.back();
+    }
+
+    // Background images for theme change
+    var backgrounds = [
+      "images/here.gif",
+      "images/best.gif",
+      "images/galaxy-space.gif",
+      "images/aurora-borealis-loop5.gif",
+    ];
+    var currentBackgroundIndex = 0;
+
+    // Function to cycle through background images
+    function changeBackground() {
+      var imgElement = document.querySelector(".background-container img.background-gif");
+      imgElement.src = backgrounds[currentBackgroundIndex];
+      currentBackgroundIndex = (currentBackgroundIndex + 1) % backgrounds.length;
+    }
+    document.getElementById("change-background").addEventListener("click", changeBackground);
+
+    // Toggle switch for enabling/disabling dark mode
+    document.getElementById('toggle-dark-mode').addEventListener('change', function(event) {
+      if(event.target.checked) {
+        document.body.style.backgroundColor = 'black';
+        document.body.style.color = 'white'; // Ensures text is visible in dark mode
+        document.querySelector('.background-container').style.display = 'none'; // Hides background image in dark mode
+      } else {
+        document.body.style.backgroundColor = ''; // Resets background color
+        document.body.style.color = ''; // Resets text color
+        document.querySelector('.background-container').style.display = 'block'; // Shows background image
+      }
+    });
+  </script>
+</body>
+</html>
